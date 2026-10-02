@@ -3,14 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>AFTER DARK — Videos</title>
+  <title>AFTER DARK — Gallery</title>
 
   <style>
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
 
     body {
@@ -20,7 +19,7 @@
     }
 
     header {
-      padding: 25px 5%;
+      padding: 30px 6%;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -28,9 +27,9 @@
     }
 
     .logo {
-      font-size: 24px;
-      font-weight: bold;
+      font-size: 25px;
       letter-spacing: 4px;
+      font-weight: bold;
     }
 
     .age {
@@ -38,187 +37,94 @@
       font-size: 13px;
     }
 
-    /* HERO */
-
     .hero {
-      padding: 65px 5% 40px;
+      padding: 90px 6% 60px;
     }
 
     .hero small {
-      color: #c58fa5;
+      color: #b88a9b;
       letter-spacing: 4px;
     }
 
     .hero h1 {
-      font-size: clamp(45px, 8vw, 90px);
+      font-size: clamp(45px, 9vw, 110px);
       line-height: .9;
-      margin: 18px 0;
+      margin-top: 20px;
     }
 
     .hero p {
       color: #888;
       max-width: 500px;
+      margin-top: 25px;
     }
 
-    /* CATEGORIES */
-
-    .categories {
-      padding: 20px 5% 35px;
-
-      display: flex;
-      gap: 10px;
-      overflow-x: auto;
-    }
-
-    .categories button {
-      flex-shrink: 0;
-
-      background: #151515;
-      color: #aaa;
-
-      border: 1px solid #292929;
-
-      padding: 11px 20px;
-
-      border-radius: 30px;
-
-      cursor: pointer;
-
-      transition: .3s;
-    }
-
-    .categories button:hover,
-    .categories button.active {
-      background: white;
-      color: black;
-    }
-
-    /* VIDEO GRID */
-
-    .videos {
-      padding: 10px 5% 80px;
+    .gallery {
+      padding: 20px 6% 100px;
 
       display: grid;
-
-      grid-template-columns:
-        repeat(3, 1fr);
-
-      gap: 22px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
     }
 
-    .video-card {
-      text-decoration: none;
-      color: white;
-
-      background: #111;
-
-      overflow: hidden;
-
-      transition: transform .3s;
-    }
-
-    .video-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .thumbnail {
+    .card {
       position: relative;
-
-      aspect-ratio: 16 / 9;
-
+      height: 500px;
       overflow: hidden;
-
-      background: #222;
+      cursor: pointer;
+      background: #151515;
     }
 
-    .thumbnail img {
+    .card img {
       width: 100%;
       height: 100%;
-
       object-fit: cover;
-
-      transition: transform .5s;
+      transition: transform .6s;
     }
 
-    .video-card:hover .thumbnail img {
-      transform: scale(1.06);
+    .card:hover img {
+      transform: scale(1.07);
     }
 
-    .duration {
+    .card-info {
       position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
 
-      right: 10px;
-      bottom: 10px;
+      padding: 60px 25px 25px;
 
-      background: rgba(0,0,0,.85);
-
-      padding: 5px 8px;
-
-      font-size: 12px;
-
-      border-radius: 4px;
+      background: linear-gradient(
+        transparent,
+        rgba(0,0,0,.9)
+      );
     }
 
-    .play {
-      position: absolute;
-
-      left: 50%;
-      top: 50%;
-
-      transform: translate(-50%, -50%);
-
-      width: 55px;
-      height: 55px;
-
-      border-radius: 50%;
-
-      background: rgba(255,255,255,.9);
-
-      color: #111;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      font-size: 20px;
-
-      opacity: 0;
-      transition: .3s;
+    .card-info h2 {
+      font-size: 22px;
     }
 
-    .video-card:hover .play {
-      opacity: 1;
-    }
-
-    .video-info {
-      padding: 15px 4px;
-    }
-
-    .video-info h2 {
-      font-size: 17px;
-      margin-bottom: 6px;
-    }
-
-    .video-info p {
-      color: #777;
+    .card-info span {
+      color: #aaa;
       font-size: 13px;
     }
 
-    /* MOBILE */
-
-    @media(max-width: 850px) {
-      .videos {
+    @media(max-width: 800px) {
+      .gallery {
         grid-template-columns: repeat(2, 1fr);
+      }
+
+      .card {
+        height: 400px;
       }
     }
 
     @media(max-width: 550px) {
-      .videos {
+      .gallery {
         grid-template-columns: 1fr;
       }
 
-      .hero {
-        padding-top: 45px;
+      .card {
+        height: 500px;
       }
     }
   </style>
@@ -228,281 +134,273 @@
 
 <header>
   <div class="logo">AFTER DARK.</div>
-  <div class="age">18+ / MATURE</div>
+  <div class="age">18+ / MATURE GALLERY</div>
 </header>
 
-
 <section class="hero">
-
-  <small>VIDEO COLLECTION</small>
+  <small>PRIVATE COLLECTION</small>
 
   <h1>
-    WATCH<br>
-    STORIES.
+    AFTER<br>
+    DARK
   </h1>
 
   <p>
-    Explore our latest mature glamour and
-    cinematic video collections.
+    A mature glamour photography collection.
+    Select a collection below to explore more photographs.
   </p>
-
 </section>
 
 
-<!-- CATEGORIES -->
+<section class="gallery">
 
-<nav class="categories">
+  <!-- CARD 1 -->
+  <a href="Dalia.html?collection=midnight" class="card">
 
-  <button class="active" data-category="all">
-    All
-  </button>
+    <img
+      src="https://cdni.pornpics.com/1280/3/38/83560771/83560771_019_baae.jpg"
+      alt="Dalia Collection"
+    >
 
-  <button data-category="glamour">
-    Glamour
-  </button>
-
-  <button data-category="fashion">
-    Fashion
-  </button>
-
-  <button data-category="travel">
-    Travel
-  </button>
-
-  <button data-category="behind">
-    Behind The Scenes
-  </button>
-
-</nav>
-
-
-<!-- VIDEOS -->
-
-<section class="videos">
-
-
-  <a
-    href="watch.html?id=1"
-    class="video-card"
-    data-category="glamour"
-  >
-
-    <div class="thumbnail">
-
-      <img
-        src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1000&q=85"
-        alt="Glamour video"
-      >
-
-      <span class="play">?</span>
-
-      <span class="duration">
-        08:42
-      </span>
-
-    </div>
-
-    <div class="video-info">
-      <h2>Midnight Session</h2>
-      <p>Glamour · 2.4K views</p>
+    <div class="card-info">
+      <h2>Dalia</h2>
+      <span>12 Photographs ?</span>
     </div>
 
   </a>
 
 
-  <a
-    href="watch.html?id=2"
-    class="video-card"
-    data-category="fashion"
-  >
+  <!-- CARD 2 -->
+  <a href="AngelaWhite.html?collection=velvet" class="card">
 
-    <div class="thumbnail">
+    <img
+      src="https://cdni.pornpics.com/1280/7/864/57778403/57778403_004_65f4.jpg"
+      alt="Angela White Collection"
+    >
 
-      <img
-        src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1000&q=85"
-        alt="Fashion video"
-      >
-
-      <span class="play">?</span>
-
-      <span class="duration">
-        12:18
-      </span>
-
+    <div class="card-info">
+      <h2>Angela White</h2>
+      <span>18 Photographs ?</span>
     </div>
 
-    <div class="video-info">
-      <h2>Studio Fashion</h2>
-      <p>Fashion · 4.8K views</p>
+  </a>
+
+<!-- CARD 2 -->
+  <a href="miakhalifa.html?collection=miakhalifa" class="card">
+
+    <img
+      src=""
+      alt="Mia Khalifa Collection"
+    >
+
+    <div class="card-info">
+      <h2>Mia Khalifa</h2>
+      <span>18 Photographs ?</span>
+    </div>
+
+  </a>
+
+<!-- CARD 2 -->
+  <a href="gallery.html?collection=velvet" class="card">
+
+    <img
+      src=""
+      alt="Velvet Collection"
+    >
+
+    <div class="card-info">
+      <h2>Velvet</h2>
+      <span>18 Photographs ?</span>
+    </div>
+
+  </a>
+
+<!-- CARD 2 -->
+  <a href="gallery.html?collection=velvet" class="card">
+
+    <img
+      src=""
+      alt="Velvet Collection"
+    >
+
+    <div class="card-info">
+      <h2>Velvet</h2>
+      <span>18 Photographs ?</span>
+    </div>
+
+  </a>
+
+<!-- CARD 2 -->
+  <a href="gallery.html?collection=velvet" class="card">
+
+    <img
+      src=""
+      alt="Velvet Collection"
+    >
+
+    <div class="card-info">
+      <h2>Velvet</h2>
+      <span>18 Photographs ?</span>
+    </div>
+
+  </a>
+
+<!-- CARD 2 -->
+  <a href="gallery.html?collection=velvet" class="card">
+
+    <img
+      src=""
+      alt="Velvet Collection"
+    >
+
+    <div class="card-info">
+      <h2>Velvet</h2>
+      <span>18 Photographs ?</span>
+    </div>
+
+  </a>
+
+<!-- CARD 2 -->
+  <a href="gallery.html?collection=velvet" class="card">
+
+    <img
+      src=""
+      alt="Velvet Collection"
+    >
+
+    <div class="card-info">
+      <h2>Velvet</h2>
+      <span>18 Photographs ?</span>
+    </div>
+
+  </a>
+
+<!-- CARD 2 -->
+  <a href="gallery.html?collection=velvet" class="card">
+
+    <img
+      src=""
+      alt="Velvet Collection"
+    >
+
+    <div class="card-info">
+      <h2>Velvet</h2>
+      <span>18 Photographs ?</span>
+    </div>
+
+  </a>
+
+<!-- CARD 2 -->
+  <a href="gallery.html?collection=velvet" class="card">
+
+    <img
+      src=""
+      alt="Velvet Collection"
+    >
+
+    <div class="card-info">
+      <h2>Velvet</h2>
+      <span>18 Photographs ?</span>
+    </div>
+
+  </a>
+
+<!-- CARD 2 -->
+  <a href="gallery.html?collection=velvet" class="card">
+
+    <img
+      src=""
+      alt="Velvet Collection"
+    >
+
+    <div class="card-info">
+      <h2>Velvet</h2>
+      <span>18 Photographs ?</span>
+    </div>
+
+  </a>
+
+<!-- CARD 2 -->
+  <a href="gallery.html?collection=velvet" class="card">
+
+    <img
+      src=""
+      alt="Velvet Collection"
+    >
+
+    <div class="card-info">
+      <h2>Velvet</h2>
+      <span>18 Photographs ?</span>
     </div>
 
   </a>
 
 
-  <a
-    href="watch.html?id=3"
-    class="video-card"
-    data-category="travel"
-  >
 
-    <div class="thumbnail">
+  <!-- CARD 3 -->
+  <a href="gallery.html?collection=afterhours" class="card">
 
-      <img
-        src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1000&q=85"
-        alt="Travel video"
-      >
+    <img
+      src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=90"
+      alt="After Hours Collection"
+    >
 
-      <span class="play">?</span>
-
-      <span class="duration">
-        15:32
-      </span>
-
-    </div>
-
-    <div class="video-info">
-      <h2>Golden Roads</h2>
-      <p>Travel · 6.1K views</p>
-    </div>
-
-  </a>
-
-
-  <a
-    href="watch.html?id=4"
-    class="video-card"
-    data-category="behind"
-  >
-
-    <div class="thumbnail">
-
-      <img
-        src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1000&q=85"
-        alt="Behind the scenes"
-      >
-
-      <span class="play">?</span>
-
-      <span class="duration">
-        06:55
-      </span>
-
-    </div>
-
-    <div class="video-info">
-      <h2>Behind The Scenes</h2>
-      <p>Behind The Scenes · 3.2K views</p>
-    </div>
-
-  </a>
-
-
-  <a
-    href="watch.html?id=5"
-    class="video-card"
-    data-category="glamour"
-  >
-
-    <div class="thumbnail">
-
-      <img
-        src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=1000&q=85"
-        alt="Glamour video"
-      >
-
-      <span class="play">?</span>
-
-      <span class="duration">
-        10:24
-      </span>
-
-    </div>
-
-    <div class="video-info">
+    <div class="card-info">
       <h2>After Hours</h2>
-      <p>Glamour · 8.7K views</p>
+      <span>15 Photographs ?</span>
     </div>
 
   </a>
 
 
-  <a
-    href="watch.html?id=6"
-    class="video-card"
-    data-category="fashion"
-  >
+  <!-- CARD 4 -->
+  <a href="gallery.html?collection=shadow" class="card">
 
-    <div class="thumbnail">
+    <img
+      src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=90"
+      alt="Shadow Collection"
+    >
 
-      <img
-        src="https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?auto=format&fit=crop&w=1000&q=85"
-        alt="Fashion video"
-      >
-
-      <span class="play">?</span>
-
-      <span class="duration">
-        09:17
-      </span>
-
-    </div>
-
-    <div class="video-info">
-      <h2>Night Fashion</h2>
-      <p>Fashion · 5.3K views</p>
+    <div class="card-info">
+      <h2>Shadow</h2>
+      <span>10 Photographs ?</span>
     </div>
 
   </a>
 
+
+  <!-- CARD 5 -->
+  <a href="gallery.html?collection=gold" class="card">
+
+    <img
+      src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=900&q=90"
+      alt="Golden Collection"
+    >
+
+    <div class="card-info">
+      <h2>Golden Hour</h2>
+      <span>14 Photographs ?</span>
+    </div>
+
+  </a>
+
+
+  <!-- CARD 6 -->
+  <a href="gallery.html?collection=studio" class="card">
+
+    <img
+      src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=900&q=90"
+      alt="Studio Collection"
+    >
+
+    <div class="card-info">
+      <h2>Studio</h2>
+      <span>20 Photographs ?</span>
+    </div>
+
+  </a>
 
 </section>
-
-
-<script>
-
-  const buttons =
-    document.querySelectorAll(".categories button");
-
-  const cards =
-    document.querySelectorAll(".video-card");
-
-
-  buttons.forEach(button => {
-
-    button.addEventListener("click", () => {
-
-      buttons.forEach(b =>
-        b.classList.remove("active")
-      );
-
-      button.classList.add("active");
-
-      const category =
-        button.dataset.category;
-
-
-      cards.forEach(card => {
-
-        if (
-          category === "all" ||
-          card.dataset.category === category
-        ) {
-
-          card.style.display = "block";
-
-        } else {
-
-          card.style.display = "none";
-
-        }
-
-      });
-
-    });
-
-  });
-
-</script>
 
 </body>
 </html>
