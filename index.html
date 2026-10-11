@@ -1,406 +1,661 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AFTER DARK — Gallery</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      background: #090909;
-      color: #fff;
-      font-family: Arial, sans-serif;
-    }
-
-    header {
-      padding: 30px 6%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #252525;
-    }
-
-    .logo {
-      font-size: 25px;
-      letter-spacing: 4px;
-      font-weight: bold;
-    }
-
-    .age {
-      color: #999;
-      font-size: 13px;
-    }
-
-    .hero {
-      padding: 90px 6% 60px;
-    }
-
-    .hero small {
-      color: #b88a9b;
-      letter-spacing: 4px;
-    }
-
-    .hero h1 {
-      font-size: clamp(45px, 9vw, 110px);
-      line-height: .9;
-      margin-top: 20px;
-    }
-
-    .hero p {
-      color: #888;
-      max-width: 500px;
-      margin-top: 25px;
-    }
-
-    .gallery {
-      padding: 20px 6% 100px;
-
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .card {
-      position: relative;
-      height: 500px;
-      overflow: hidden;
-      cursor: pointer;
-      background: #151515;
-    }
-
-    .card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform .6s;
-    }
-
-    .card:hover img {
-      transform: scale(1.07);
-    }
-
-    .card-info {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-
-      padding: 60px 25px 25px;
-
-      background: linear-gradient(
-        transparent,
-        rgba(0,0,0,.9)
-      );
-    }
-
-    .card-info h2 {
-      font-size: 22px;
-    }
-
-    .card-info span {
-      color: #aaa;
-      font-size: 13px;
-    }
-
-    @media(max-width: 800px) {
-      .gallery {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .card {
-        height: 400px;
-      }
-    }
-
-    @media(max-width: 550px) {
-      .gallery {
-        grid-template-columns: 1fr;
-      }
-
-      .card {
-        height: 500px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AfterDarkNight - Premium Content Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            500: '#e11d48',
+                            600: '#be123c',
+                            700: '#9f1239',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Smooth transitions & custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+    </style>
 </head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased min-h-screen selection:bg-rose-600 selection:text-white">
 
-<body>
-
-<header>
-  <div class="logo">AFTER DARK.</div>
-  <div class="age">18+ / MATURE GALLERY</div>
-</header>
-
-<section class="hero">
-  <small>PRIVATE COLLECTION</small>
-
-  <h1>
-    AFTER<br>
-    DARK
-  </h1>
-
-  <p>
-    A mature glamour photography collection.
-    Select a collection below to explore more photographs.
-  </p>
-</section>
-
-
-<section class="gallery">
-
-  <!-- CARD 1 -->
-  <a href="Dalia.html?collection=midnight" class="card">
-
-    <img
-      src="https://cdni.pornpics.com/1280/3/38/83560771/83560771_019_baae.jpg"
-      alt="Dalia Collection"
-    >
-
-    <div class="card-info">
-      <h2>Dalia</h2>
-      <span>12 Photographs ?</span>
+    <div id="age-gate" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/95 backdrop-blur-2xl p-4 transition-opacity duration-500">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-md w-full p-8 text-center shadow-2xl relative overflow-hidden">
+            <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-rose-500 via-purple-500 to-rose-500"></div>
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-rose-500/10 text-rose-500 mb-6 text-2xl font-bold border border-rose-500/20">
+                18+
+            </div>
+            <h2 class="text-2xl font-bold tracking-tight text-white mb-2">Age Verification Required</h2>
+            <p class="text-slate-400 text-sm mb-6 leading-relaxed">
+                This website contains adult content intended solely for mature audiences. You must be at least 18 years of age (or the legal age of majority in your jurisdiction) to enter.
+            </p>
+            <div class="space-y-3">
+                <button onclick="verifyAge()" class="w-full py-3.5 px-4 bg-gradient-to-r from-rose-600 to-rose-700 hover:from-rose-500 hover:to-rose-600 text-white font-semibold rounded-xl shadow-lg shadow-rose-900/30 transition-all duration-200 transform active:scale-95">
+                    I am 18 or Older - Enter
+                </button>
+                <button onclick="window.location.href='https://www.google.com'" class="w-full py-3 px-4 bg-slate-800 hover:bg-slate-700 text-slate-300 font-medium rounded-xl transition-colors text-sm">
+                    Exit Site
+                </button>
+            </div>
+            <p class="text-xs text-slate-500 mt-6">By entering, you certify that you agree to our Terms of Service and Privacy Policy.</p>
+        </div>
     </div>
 
-  </a>
+    <div id="main-app" class="filter blur-xl transition-all duration-700 pointer-events-none select-none">
+        
+        <!-- Top 728x90 Leaderboard Ad Placement -->
+        <div class="w-full bg-slate-900 border-y border-slate-800/80 py-3 px-4 flex justify-center items-center">
+            <div class="w-[728px] h-[90px] bg-slate-800/50 rounded-lg flex flex-col items-center justify-center text-slate-500 text-xs border border-slate-800 tracking-wider">
+                <span class="font-semibold text-slate-400 mb-1"><script>
+  atOptions = {
+    'key' : 'e2f89538bcd32921164cf0c8160aee40',
+    'format' : 'iframe',
+    'height' : 90,
+    'width' : 728,
+    'params' : {}
+  };
+</script>
+<script src="https://www.highrevenueformat.com/e2f89538bcd32921164cf0c8160aee40/invoke.js"></script></span>
+                
+            </div>
+        </div>
+
+        <!-- Main Header -->
+        <header class="sticky top-0 z-40 bg-slate-950/80 backdrop-blur-md border-b border-slate-800/80">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="navigateHome()">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-rose-600 to-rose-500 flex items-center justify-center shadow-lg shadow-rose-900/40 text-white font-black text-xl">
+                        A
+                    </div>
+                    <div>
+                        <h1 class="text-lg font-bold tracking-wider text-white">AFTER<span class="text-rose-500">DARK</span>NIGHT</h1>
+                        <p class="text-[10px] text-slate-400 tracking-widest uppercase">Unrestricted Adult Streaming</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="relative hidden sm:block">
+                        <input type="text" placeholder="Search videos & models..." class="bg-slate-900 border border-slate-800 text-slate-200 text-sm rounded-xl px-4 py-2 pl-10 focus:outline-none focus:border-rose-500 w-64 transition-all">
+                        <svg class="w-4 h-4 text-slate-400 absolute left-3.5 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main id="home-view" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+            
+            <!-- Featured Creators Section -->
+            <section>
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-xl font-bold text-white tracking-wide flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-rose-500 animate-pulse"></span>
+                        Featured Creators Gallery
+                    </h2>
+                    <span class="text-xs text-slate-400">Click profile to view photo gallery</span>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                    <!-- Creator 1 -->
+                    <div onclick="openCreatorGallery('Mia Khalifa', 'https://cdni.pornpics.com/1280/7/271/49875038/49875038_197_0071.jpg')" class="group cursor-pointer bg-slate-900/60 border border-slate-800/80 rounded-2xl p-4 text-center hover:border-rose-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-rose-950/30">
+                        <div class="relative w-20 h-20 mx-auto mb-3 rounded-full overflow-hidden border-2 border-slate-700 group-hover:border-rose-500 transition-colors">
+                            <img src="https://cdni.pornpics.com/1280/7/271/49875038/49875038_197_0071.jpg" alt="Mia Khalifa" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://placehold.co/400x400/1e293b/cbd5e1?text=Creator's">
+                        </div>
+                        <h3 class="font-semibold text-sm text-slate-200 group-hover:text-rose-400 transition-colors truncate">Mia Khalifa</h3>
+                        <p class="text-xs text-slate-500 mt-0.5">24 Galleries</p>
+                    </div>
+                    <!-- Creator 2 -->
+                    <div onclick="openCreatorGallery('Angela White', 'https://cdni.pornpics.com/1280/7/542/36161745/36161745_020_c4a7.jpg')" class="group cursor-pointer bg-slate-900/60 border border-slate-800/80 rounded-2xl p-4 text-center hover:border-rose-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-rose-950/30">
+                        <div class="relative w-20 h-20 mx-auto mb-3 rounded-full overflow-hidden border-2 border-slate-700 group-hover:border-rose-500 transition-colors">
+                            <img src="https://cdni.pornpics.com/1280/7/542/36161745/36161745_020_c4a7.jpg" alt="Angela White" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://placehold.co/400x400/1e293b/cbd5e1?text=Creator'">
+                        </div>
+                        <h3 class="font-semibold text-sm text-slate-200 group-hover:text-rose-400 transition-colors truncate">Angela White</h3>
+                        <p class="text-xs text-slate-500 mt-0.5">18 Galleries</p>
+                    </div>
+                    <!-- Creator 3 -->
+                    <div onclick="openCreatorGallery('Chloe Fox', 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&q=80&w=600')" class="group cursor-pointer bg-slate-900/60 border border-slate-800/80 rounded-2xl p-4 text-center hover:border-rose-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-rose-950/30">
+                        <div class="relative w-20 h-20 mx-auto mb-3 rounded-full overflow-hidden border-2 border-slate-700 group-hover:border-rose-500 transition-colors">
+                            <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&q=80&w=600" alt="Chloe Fox" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://placehold.co/400x400/1e293b/cbd5e1?text=Creator'">
+                        </div>
+                        <h3 class="font-semibold text-sm text-slate-200 group-hover:text-rose-400 transition-colors truncate">Chloe Fox</h3>
+                        <p class="text-xs text-slate-500 mt-0.5">31 Galleries</p>
+                    </div>
+                    <!-- Creator 4 -->
+                    <div onclick="openCreatorGallery('Maya Rose', 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=600')" class="group cursor-pointer bg-slate-900/60 border border-slate-800/80 rounded-2xl p-4 text-center hover:border-rose-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-rose-950/30">
+                        <div class="relative w-20 h-20 mx-auto mb-3 rounded-full overflow-hidden border-2 border-slate-700 group-hover:border-rose-500 transition-colors">
+                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=600" alt="Maya Rose" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://placehold.co/400x400/1e293b/cbd5e1?text=Creator'">
+                        </div>
+                        <h3 class="font-semibold text-sm text-slate-200 group-hover:text-rose-400 transition-colors truncate">Maya Rose</h3>
+                        <p class="text-xs text-slate-500 mt-0.5">15 Galleries</p>
+                    </div>
+                    <!-- Creator 5 -->
+                    <div onclick="openCreatorGallery('Kendra Lust', 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&q=80&w=600')" class="group cursor-pointer bg-slate-900/60 border border-slate-800/80 rounded-2xl p-4 text-center hover:border-rose-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-rose-950/30">
+                        <div class="relative w-20 h-20 mx-auto mb-3 rounded-full overflow-hidden border-2 border-slate-700 group-hover:border-rose-500 transition-colors">
+                            <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&q=80&w=600" alt="Kendra Lust" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://placehold.co/400x400/1e293b/cbd5e1?text=Creator'">
+                        </div>
+                        <h3 class="font-semibold text-sm text-slate-200 group-hover:text-rose-400 transition-colors truncate">Kendra Lust</h3>
+                        <p class="text-xs text-slate-500 mt-0.5">42 Galleries</p>
+                    </div>
+                    <!-- Creator 6 -->
+                    <div onclick="openCreatorGallery('Vixen Star', 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&q=80&w=600')" class="group cursor-pointer bg-slate-900/60 border border-slate-800/80 rounded-2xl p-4 text-center hover:border-rose-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-rose-950/30">
+                        <div class="relative w-20 h-20 mx-auto mb-3 rounded-full overflow-hidden border-2 border-slate-700 group-hover:border-rose-500 transition-colors">
+                            <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&q=80&w=600" alt="Vixen Star" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" onerror="this.src='https://placehold.co/400x400/1e293b/cbd5e1?text=Creator'">
+                        </div>
+                        <h3 class="font-semibold text-sm text-slate-200 group-hover:text-rose-400 transition-colors truncate">Vixen Star</h3>
+                        <p class="text-xs text-slate-500 mt-0.5">29 Galleries</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Mid-page Ad Slot (728x90) -->
+            <div class="w-full flex justify-center py-4">
+                <div class="w-[728px] h-[90px] bg-slate-900/80 rounded-xl flex flex-col items-center justify-center text-slate-500 text-xs shadow-inner">
+                    <span class="font-semibold text-slate-400 mb-1"><script>
+  atOptions = {
+    'key' : 'e2f89538bcd32921164cf0c8160aee40',
+    'format' : 'iframe',
+    'height' : 90,
+    'width' : 728,
+    'params' : {}
+  };
+</script>
+<script src="https://www.highrevenueformat.com/e2f89538bcd32921164cf0c8160aee40/invoke.js"></script></span>
+                    
+                </div>
+            </div>
+
+            <section>
+                <div class="flex items-center justify-between mb-6">
+                    <h2 class="text-xl font-bold text-white tracking-wide flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-rose-500"></span>
+                        Trending Videos
+                    </h2>
+                    <div class="flex space-x-2 text-xs">
+                        <button class="px-3 py-1.5 rounded-lg bg-rose-600 text-white font-medium">All</button>
+                        <button class="px-3 py-1.5 rounded-lg bg-slate-900 text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">Newest</button>
+                        <button class="px-3 py-1.5 rounded-lg bg-slate-900 text-slate-400 hover:bg-slate-800 hover:text-white transition-colors">Most Viewed</button>
+                    </div>
+                </div>
+
+                <!-- Video Grid with integrated ad slots -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="video-grid">
+                    <!-- Video Card 1 -->
+                    <div onclick="openVideo('Midnight Temptation: Special Feature', 'Aria Stone', '18:45', 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=1200')" class="group cursor-pointer bg-slate-900/60 border border-slate-800/80 rounded-2xl overflow-hidden hover:border-rose-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-rose-950/30 flex flex-col">
+                        <div class="relative aspect-video bg-slate-950 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=1200" alt="Video Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/1e293b/cbd5e1?text=Video+Preview'">
+                            <div class="absolute bottom-2 right-2 bg-slate-950/80 backdrop-blur text-xs font-semibold px-2 py-1 rounded text-slate-300">18:45</div>
+                            <div class="absolute inset-0 bg-rose-600/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <div class="w-12 h-12 rounded-full bg-rose-600 text-white flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
+                                    <svg class="w-6 h-6 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4 flex flex-col flex-grow">
+                            <h3 class="font-semibold text-white group-hover:text-rose-400 transition-colors line-clamp-1">Midnight Temptation: Special Feature</h3>
+                            <div class="flex items-center justify-between mt-2 text-xs text-slate-400">
+                                <span>Aria Stone</span>
+                                <span>124K views</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Video Card 2 -->
+                    <div onclick="openVideo('After Hours Vol. 2', 'Luna Vance', '24:10', 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&q=80&w=1200')" class="group cursor-pointer bg-slate-900/60 border border-slate-800/80 rounded-2xl overflow-hidden hover:border-rose-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-rose-950/30 flex flex-col">
+                        <div class="relative aspect-video bg-slate-950 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&q=80&w=1200" alt="Video Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/1e293b/cbd5e1?text=Video+Preview'">
+                            <div class="absolute bottom-2 right-2 bg-slate-950/80 backdrop-blur text-xs font-semibold px-2 py-1 rounded text-slate-300">24:10</div>
+                            <div class="absolute inset-0 bg-rose-600/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <div class="w-12 h-12 rounded-full bg-rose-600 text-white flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
+                                    <svg class="w-6 h-6 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4 flex flex-col flex-grow">
+                            <h3 class="font-semibold text-white group-hover:text-rose-400 transition-colors line-clamp-1">After Hours Vol. 2</h3>
+                            <div class="flex items-center justify-between mt-2 text-xs text-slate-400">
+                                <span>Luna Vance</span>
+                                <span>89K views</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- In-feed 300x250 Banner Ad Card -->
+                      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 flex flex-col items-center justify-center text-center shadow-lg relative overflow-hidden min-h-[280px]">
+                       <span class="absolute top-3 left-4 text-[10px] font-bold text-slate-500 tracking-wider">ADVERTISEMENT</span>
+                        <div class="w-[300px] h-[250px] bg-slate-950/60 rounded-xl flex flex-col items-center justify-center border border-slate-800/80">
+                             <span class="text-xs font-semibold text-slate-400"><script>
+  atOptions = {
+    'key' : '14cf66d020e1d196ea2b401fa8095d30',
+    'format' : 'iframe',
+    'height' : 250,
+    'width' : 300,
+    'params' : {}
+  };
+</script>
+<script src="https://www.highrevenueformat.com/14cf66d020e1d196ea2b401fa8095d30/invoke.js"></script></span>
+                            
+                        </div>
+                    </div>
+
+                    <!-- Video Card 3 -->
+                    <div onclick="openVideo('Private Sessions Uncensored', 'Chloe Fox', '32:00', 'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&q=80&w=1200')" class="group cursor-pointer bg-slate-900/60 border border-slate-800/80 rounded-2xl overflow-hidden hover:border-rose-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-rose-950/30 flex flex-col">
+                        <div class="relative aspect-video bg-slate-950 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&q=80&w=1200" alt="Video Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/1e293b/cbd5e1?text=Video+Preview'">
+                            <div class="absolute bottom-2 right-2 bg-slate-950/80 backdrop-blur text-xs font-semibold px-2 py-1 rounded text-slate-300">32:00</div>
+                            <div class="absolute inset-0 bg-rose-600/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <div class="w-12 h-12 rounded-full bg-rose-600 text-white flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
+                                    <svg class="w-6 h-6 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4 flex flex-col flex-grow">
+                            <h3 class="font-semibold text-white group-hover:text-rose-400 transition-colors line-clamp-1">Private Sessions Uncensored</h3>
+                            <div class="flex items-center justify-between mt-2 text-xs text-slate-400">
+                                <span>Chloe Fox</span>
+                                <span>210K views</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Video Card 4 -->
+                    <div onclick="openVideo('Sensual Rhythms', 'Maya Rose', '15:20', 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=1200')" class="group cursor-pointer bg-slate-900/60 border border-slate-800/80 rounded-2xl overflow-hidden hover:border-rose-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-rose-950/30 flex flex-col">
+                        <div class="relative aspect-video bg-slate-950 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=1200" alt="Video Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/1e293b/cbd5e1?text=Video+Preview'">
+                            <div class="absolute bottom-2 right-2 bg-slate-950/80 backdrop-blur text-xs font-semibold px-2 py-1 rounded text-slate-300">15:20</div>
+                            <div class="absolute inset-0 bg-rose-600/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <div class="w-12 h-12 rounded-full bg-rose-600 text-white flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
+                                    <svg class="w-6 h-6 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4 flex flex-col flex-grow">
+                            <h3 class="font-semibold text-white group-hover:text-rose-400 transition-colors line-clamp-1">Sensual Rhythms</h3>
+                            <div class="flex items-center justify-between mt-2 text-xs text-slate-400">
+                                <span>Maya Rose</span>
+                                <span>95K views</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Video Card 5 -->
+                    <div onclick="openVideo('Intimate Escape', 'Kendra Lust', '28:30', 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&q=80&w=1200')" class="group cursor-pointer bg-slate-900/60 border border-slate-800/80 rounded-2xl overflow-hidden hover:border-rose-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-rose-950/30 flex flex-col">
+                        <div class="relative aspect-video bg-slate-950 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&q=80&w=1200" alt="Video Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/1e293b/cbd5e1?text=Video+Preview'">
+                            <div class="absolute bottom-2 right-2 bg-slate-950/80 backdrop-blur text-xs font-semibold px-2 py-1 rounded text-slate-300">28:30</div>
+                            <div class="absolute inset-0 bg-rose-600/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <div class="w-12 h-12 rounded-full bg-rose-600 text-white flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
+                                    <svg class="w-6 h-6 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4 flex flex-col flex-grow">
+                            <h3 class="font-semibold text-white group-hover:text-rose-400 transition-colors line-clamp-1">Intimate Escape</h3>
+                            <div class="flex items-center justify-between mt-2 text-xs text-slate-400">
+                                <span>Kendra Lust</span>
+                                <span>310K views</span>
+                            </div>
+                        </div>
+                    </div>
+                              <!-- Video Card 1 -->
+                    <div onclick="openVideo('Midnight Temptation: Special Feature', 'Aria Stone', '18:45', 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=1200')" class="group cursor-pointer bg-slate-900/60 border border-slate-800/80 rounded-2xl overflow-hidden hover:border-rose-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-rose-950/30 flex flex-col">
+                        <div class="relative aspect-video bg-slate-950 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=1200" alt="Video Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/1e293b/cbd5e1?text=Video+Preview'">
+                            <div class="absolute bottom-2 right-2 bg-slate-950/80 backdrop-blur text-xs font-semibold px-2 py-1 rounded text-slate-300">18:45</div>
+                            <div class="absolute inset-0 bg-rose-600/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <div class="w-12 h-12 rounded-full bg-rose-600 text-white flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
+                                    <svg class="w-6 h-6 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4 flex flex-col flex-grow">
+                            <h3 class="font-semibold text-white group-hover:text-rose-400 transition-colors line-clamp-1">Midnight Temptation: Special Feature</h3>
+                            <div class="flex items-center justify-between mt-2 text-xs text-slate-400">
+                                <span>Aria Stone</span>
+                                <span>124K views</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Video Card 2 -->
+                    <div onclick="openVideo('After Hours Vol. 2', 'Luna Vance', '24:10', 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&q=80&w=1200')" class="group cursor-pointer bg-slate-900/60 border border-slate-800/80 rounded-2xl overflow-hidden hover:border-rose-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-rose-950/30 flex flex-col">
+                        <div class="relative aspect-video bg-slate-950 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&q=80&w=1200" alt="Video Thumbnail" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x400/1e293b/cbd5e1?text=Video+Preview'">
+                            <div class="absolute bottom-2 right-2 bg-slate-950/80 backdrop-blur text-xs font-semibold px-2 py-1 rounded text-slate-300">24:10</div>
+                            <div class="absolute inset-0 bg-rose-600/10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                                <div class="w-12 h-12 rounded-full bg-rose-600 text-white flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-transform">
+                                    <svg class="w-6 h-6 ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-4 flex flex-col flex-grow">
+                            <h3 class="font-semibold text-white group-hover:text-rose-400 transition-colors line-clamp-1">After Hours Vol. 2</h3>
+                            <div class="flex items-center justify-between mt-2 text-xs text-slate-400">
+                                <span>Luna Vance</span>
+                                <span>89K views</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- In-feed 300x250 Banner Ad Card -->
+                      <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 flex flex-col items-center justify-center text-center shadow-lg relative overflow-hidden min-h-[280px]">
+                       <span class="absolute top-3 left-4 text-[10px] font-bold text-slate-500 tracking-wider">ADVERTISEMENT</span>
+                        <div class="w-[300px] h-[250px] bg-slate-950/60 rounded-xl flex flex-col items-center justify-center border border-slate-800/80">
+                             <span class="text-xs font-semibold text-slate-400"><script>
+  atOptions = {
+    'key' : '14cf66d020e1d196ea2b401fa8095d30',
+    'format' : 'iframe',
+    'height' : 250,
+    'width' : 300,
+    'params' : {}
+  };
+</script>
+<script src="https://www.highrevenueformat.com/14cf66d020e1d196ea2b401fa8095d30/invoke.js"></script></span>
+                            
+                        </div>
+                    </div>
+
+                </div>
 
 
-  <!-- CARD 2 -->
-  <a href="AngelaWhite.html?collection=velvet" class="card">
+            </section>
+        </main>
 
-    <img
-      src="https://cdni.pornpics.com/1280/7/864/57778403/57778403_004_65f4.jpg"
-      alt="Angela White Collection"
-    >
+        <div id="video-view" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+            <button onclick="navigateHome()" class="inline-flex items-center space-x-2 text-sm text-slate-400 hover:text-white bg-slate-900 hover:bg-slate-800 px-4 py-2 rounded-xl border border-slate-800 transition-colors">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+                <span>Back to Home</span>
+            </button>
 
-    <div class="card-info">
-      <h2>Angela White</h2>
-      <span>18 Photographs ?</span>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Left/Main Video Player & Info Column (2 cols) -->
+                <div class="lg:col-span-2 space-y-6">
+                    <!-- Video Player Container -->
+                    <div class="relative aspect-video bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 shadow-2xl flex items-center justify-center group">
+                        <img id="player-thumb" src="" alt="Active Video" class="absolute inset-0 w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-slate-950/60 backdrop-blur-sm flex flex-col items-center justify-center">
+                            <div class="w-20 h-20 rounded-full bg-rose-600 text-white flex items-center justify-center shadow-xl shadow-rose-950 cursor-pointer hover:scale-110 transition-transform">
+                                <svg class="w-8 h-8 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            </div>
+                            <span class="text-xs text-slate-300 font-medium mt-4 tracking-wider uppercase">Click to Play Ad-Supported Stream</span>
+                        </div>
+                    </div>
+
+                    <!-- Video Title & Details -->
+                    <div>
+                        <h2 id="player-title" class="text-2xl font-bold text-white">Video Title</h2>
+                        <div class="flex items-center justify-between mt-3 pb-4 border-b border-slate-800 text-sm text-slate-400">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 rounded-full bg-slate-800 overflow-hidden">
+                                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200" class="w-full h-full object-cover">
+                                </div>
+                                <div>
+                                    <h4 id="player-model" class="font-semibold text-white">Model Name</h4>
+                                    <span class="text-xs text-slate-500">Official Creator</span>
+                                </div>
+                            </div>
+                            <span class="text-xs text-rose-500 font-semibold bg-rose-500/10 px-3 py-1 rounded-full border border-rose-500/20">Free HD Stream</span>
+                        </div>
+                    </div>
+
+                    <!-- In-Stream Banner Ad Slot (300x250 Large Box) -->
+                     
+
+                    <div class="w-full bg-slate-900/90 border border-slate-800 rounded-2xl p-6 flex flex-col items-center justify-center text-center shadow-lg relative overflow-hidden">
+                        <span class="absolute top-3 left-4 text-[10px] font-bold text-slate-500 tracking-wider">ADVERTISEMENT</span>
+                        <div class="w-full h-[280px] bg-slate-950/80 rounded-xl flex flex-col items-center justify-center border border-slate-800/80">
+                            <svg class="w-12 h-12 text-slate-600 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/></svg>
+                            <span class="text-sm font-semibold text-slate-400"><script>
+  atOptions = {
+    'key' : '14cf66d020e1d196ea2b401fa8095d30',
+    'format' : 'iframe',
+    'height' : 250,
+    'width' : 300,
+    'params' : {}
+  };
+</script>
+<script src="https://www.highrevenueformat.com/14cf66d020e1d196ea2b401fa8095d30/invoke.js"></script></span>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Recommended Videos & Additional Ads -->
+                <div class="space-y-6">
+                    <!-- 300x250 Banner Ad Sidebar -->
+                     <div class="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 flex flex-col items-center justify-center text-center shadow-lg relative overflow-hidden min-h-[280px]">
+                       <span class="absolute top-3 left-4 text-[10px] font-bold text-slate-500 tracking-wider">ADVERTISEMENT</span>
+                        <div class="w-[300px] h-[250px] bg-slate-950/60 rounded-xl flex flex-col items-center justify-center border border-slate-800/80">
+                             <span class="text-xs font-semibold text-slate-400"><script>
+  atOptions = {
+    'key' : '14cf66d020e1d196ea2b401fa8095d30',
+    'format' : 'iframe',
+    'height' : 250,
+    'width' : 300,
+    'params' : {}
+  };
+</script>
+<script src="https://www.highrevenueformat.com/14cf66d020e1d196ea2b401fa8095d30/invoke.js"></script></span>
+                            
+                        </div>
+                    </div> 
+
+
+                  
+
+                    <div>
+                        <h3 class="text-lg font-bold text-white mb-4">Recommended Videos</h3>
+                        <div class="space-y-4">
+                            <!-- Rec Video 1 -->
+                            <div onclick="openVideo('Midnight Temptation: Special Feature', 'Aria Stone', '18:45', 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=600')" class="flex space-x-3 group cursor-pointer bg-slate-900/50 p-2.5 rounded-xl border border-slate-800/80 hover:border-rose-500/50 transition-colors">
+                                <div class="w-32 aspect-video bg-slate-950 rounded-lg overflow-hidden flex-shrink-0 relative">
+                                    <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-105 transition-transform">
+                                    <span class="absolute bottom-1 right-1 bg-slate-950/80 text-[10px] px-1 rounded text-slate-300">18:45</span>
+                                </div>
+                                <div class="flex flex-col justify-center">
+                                    <h4 class="text-xs font-semibold text-white group-hover:text-rose-400 transition-colors line-clamp-2">Midnight Temptation: Special Feature</h4>
+                                    <span class="text-[10px] text-slate-400 mt-1">Aria Stone</span>
+                                </div>
+                            </div>
+                            <!-- Rec Video 2 -->
+                            <div onclick="openVideo('After Hours Vol. 2', 'Luna Vance', '24:10', 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&q=80&w=600')" class="flex space-x-3 group cursor-pointer bg-slate-900/50 p-2.5 rounded-xl border border-slate-800/80 hover:border-rose-500/50 transition-colors">
+                                <div class="w-32 aspect-video bg-slate-950 rounded-lg overflow-hidden flex-shrink-0 relative">
+                                    <img src="https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-105 transition-transform">
+                                    <span class="absolute bottom-1 right-1 bg-slate-950/80 text-[10px] px-1 rounded text-slate-300">24:10</span>
+                                </div>
+                                <div class="flex flex-col justify-center">
+                                    <h4 class="text-xs font-semibold text-white group-hover:text-rose-400 transition-colors line-clamp-2">After Hours Vol. 2</h4>
+                                    <span class="text-[10px] text-slate-400 mt-1">Luna Vance</span>
+                                </div>
+                            </div>
+                            <!-- Rec Video 3 -->
+                            <div onclick="openVideo('Private Sessions Uncensored', 'Chloe Fox', '32:00', 'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&q=80&w=600')" class="flex space-x-3 group cursor-pointer bg-slate-900/50 p-2.5 rounded-xl border border-slate-800/80 hover:border-rose-500/50 transition-colors">
+                                <div class="w-32 aspect-video bg-slate-950 rounded-lg overflow-hidden flex-shrink-0 relative">
+                                    <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover group-hover:scale-105 transition-transform">
+                                    <span class="absolute bottom-1 right-1 bg-slate-950/80 text-[10px] px-1 rounded text-slate-300">32:00</span>
+                                </div>
+                                <div class="flex flex-col justify-center">
+                                    <h4 class="text-xs font-semibold text-white group-hover:text-rose-400 transition-colors line-clamp-2">Private Sessions Uncensored</h4>
+                                    <span class="text-[10px] text-slate-400 mt-1">Chloe Fox</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="gallery-view" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+            <button onclick="navigateHome()" class="inline-flex items-center space-x-2 text-sm text-slate-400 hover:text-white bg-slate-900 hover:bg-slate-800 px-4 py-2 rounded-xl border border-slate-800 transition-colors">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+                <span>Back to Home</span>
+            </button>
+
+            <!-- Creator Header Info -->
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col sm:flex-row items-center gap-6 shadow-xl">
+                <img id="gallery-creator-avatar" src="" alt="Creator" class="w-24 h-24 rounded-full object-cover border-2 border-rose-500 shadow-lg">
+                <div class="text-center sm:text-left">
+                    <h2 id="gallery-creator-name" class="text-2xl font-bold text-white">Creator Name</h2>
+                    <p class="text-slate-400 text-sm mt-1">Exclusive Photo Gallery & Model Portfolios</p>
+                    <span class="inline-block mt-3 text-xs bg-rose-500/10 text-rose-400 font-semibold px-3 py-1 rounded-full border border-rose-500/20">Free Ad-Supported Gallery</span>
+                </div>
+            </div>
+
+            <!-- In-Gallery Banner Ad Slot (728x90) -->
+            <div class="w-full flex justify-center py-2">
+                <div class="w-[728px] h-[90px] bg-slate-900/80 rounded-xl flex flex-col items-center justify-center text-slate-500 text-xs shadow-inner">
+                    <span class="font-semibold text-slate-400 mb-1">ADVERTISEMENT</span>
+                    <span><script>
+  atOptions = {
+    'key' : 'e2f89538bcd32921164cf0c8160aee40',
+    'format' : 'iframe',
+    'height' : 90,
+    'width' : 728,
+    'params' : {}
+  };
+</script>
+<script src="https://www.highrevenueformat.com/e2f89538bcd32921164cf0c8160aee40/invoke.js"></script></span>
+                </div>
+            </div>
+
+            <!-- Photo Grid -->
+            <div>
+                <h3 class="text-lg font-bold text-white mb-4">Photo Collection</h3>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4" id="photo-grid">
+                    <!-- Populated dynamically via JS -->
+                </div>
+            </div>
+        </div>
+
+        <div id="lightbox" class="fixed inset-0 z-50 bg-slate-950/95 backdrop-blur-xl hidden flex items-center justify-center p-4">
+            <button onclick="closeLightbox()" class="absolute top-6 right-6 text-slate-400 hover:text-white bg-slate-900 hover:bg-slate-800 p-3 rounded-full border border-slate-800 transition-colors z-50">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+            <button onclick="prevPhoto()" class="absolute left-6 text-slate-400 hover:text-white bg-slate-900 hover:bg-slate-800 p-4 rounded-full border border-slate-800 transition-colors z-50">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+            </button>
+            <button onclick="nextPhoto()" class="absolute right-6 text-slate-400 hover:text-white bg-slate-900 hover:bg-slate-800 p-4 rounded-full border border-slate-800 transition-colors z-50">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </button>
+            
+            <div class="max-w-4xl max-h-[85vh] flex flex-col items-center">
+                <img id="lightbox-img" src="" alt="Enlarged Photo" class="max-w-full max-h-[75vh] object-contain rounded-2xl border border-slate-800 shadow-2xl">
+                <p id="lightbox-caption" class="text-slate-400 text-sm mt-4 font-medium"></p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-slate-950 border-t border-slate-900 py-12 mt-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+                <h2 class="text-lg font-bold text-white tracking-wider">AFTER<span class="text-rose-500">DARK</span>NIGHT</h2>
+                <p class="text-xs text-slate-500 max-w-xl mx-auto leading-relaxed">
+                    All models were 18 years of age or older at the time of recording. AfterDarkNight has zero-tolerance policy against illegal content. Funded entirely by advertisements.
+                </p>
+                <p class="text-xs text-slate-600">&copy; 2026 AfterDarkNight. All Rights Reserved.</p>
+            </div>
+        </footer>
     </div>
 
-  </a>
+    <script>
+        // Age Verification Handler
+        function verifyAge() {
+            const ageGate = document.getElementById('age-gate');
+            const mainApp = document.getElementById('main-app');
 
-<!-- CARD 2 -->
-  <a href="miakhalifa.html?collection=miakhalifa" class="card">
+            ageGate.classList.add('opacity-0');
+            setTimeout(() => {
+                ageGate.style.display = 'none';
+            }, 500);
 
-    <img
-      src=""
-      alt="Mia Khalifa Collection"
-    >
+            mainApp.classList.remove('filter', 'blur-xl', 'pointer-events-none', 'select-none');
+        }
 
-    <div class="card-info">
-      <h2>Mia Khalifa</h2>
-      <span>18 Photographs ?</span>
-    </div>
+        // Navigation Controllers
+        function navigateHome() {
+            document.getElementById('home-view').classList.remove('hidden');
+            document.getElementById('video-view').classList.add('hidden');
+            document.getElementById('gallery-view').classList.add('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
-  </a>
+        function openVideo(title, model, duration, thumb) {
+            document.getElementById('home-view').classList.add('hidden');
+            document.getElementById('gallery-view').classList.add('hidden');
+            document.getElementById('video-view').classList.remove('hidden');
+            
+            document.getElementById('player-title').innerText = title;
+            document.getElementById('player-model').innerText = model;
+            document.getElementById('player-thumb').src = thumb;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
-<!-- CARD 2 -->
-  <a href="gallery.html?collection=velvet" class="card">
+        // Gallery & Lightbox Data
+        const samplePhotos = [
+            "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=1200",
+            "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&q=80&w=1200",
+            "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&q=80&w=1200",
+            "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=1200",
+            "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&q=80&w=1200",
+            "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&q=80&w=1200",
+            "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=1200",
+            "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&q=80&w=1200"
+        ];
+        let currentPhotoIndex = 0;
 
-    <img
-      src=""
-      alt="Velvet Collection"
-    >
+        function openCreatorGallery(name, avatar) {
+            document.getElementById('home-view').classList.add('hidden');
+            document.getElementById('video-view').classList.add('hidden');
+            document.getElementById('gallery-view').classList.remove('hidden');
 
-    <div class="card-info">
-      <h2>Velvet</h2>
-      <span>18 Photographs ?</span>
-    </div>
+            document.getElementById('gallery-creator-name').innerText = name;
+            document.getElementById('gallery-creator-avatar').src = avatar;
 
-  </a>
+            const grid = document.getElementById('photo-grid');
+            grid.innerHTML = '';
 
-<!-- CARD 2 -->
-  <a href="gallery.html?collection=velvet" class="card">
+            samplePhotos.forEach((photo, idx) => {
+                grid.innerHTML += `
+                    <div onclick="openLightbox(${idx})" class="group cursor-pointer aspect-square bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 hover:border-rose-500/50 transition-all shadow-md">
+                        <img src="${photo}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/600x600/1e293b/cbd5e1?text=Photo'">
+                    </div>
+                `;
+            });
 
-    <img
-      src=""
-      alt="Velvet Collection"
-    >
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
-    <div class="card-info">
-      <h2>Velvet</h2>
-      <span>18 Photographs ?</span>
-    </div>
+        function openLightbox(index) {
+            currentPhotoIndex = index;
+            updateLightboxImage();
+            document.getElementById('lightbox').classList.remove('hidden');
+        }
 
-  </a>
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.add('hidden');
+        }
 
-<!-- CARD 2 -->
-  <a href="gallery.html?collection=velvet" class="card">
+        function nextPhoto() {
+            currentPhotoIndex = (currentPhotoIndex + 1) % samplePhotos.length;
+            updateLightboxImage();
+        }
 
-    <img
-      src=""
-      alt="Velvet Collection"
-    >
+        function prevPhoto() {
+            currentPhotoIndex = (currentPhotoIndex - 1 + samplePhotos.length) % samplePhotos.length;
+            updateLightboxImage();
+        }
 
-    <div class="card-info">
-      <h2>Velvet</h2>
-      <span>18 Photographs ?</span>
-    </div>
-
-  </a>
-
-<!-- CARD 2 -->
-  <a href="gallery.html?collection=velvet" class="card">
-
-    <img
-      src=""
-      alt="Velvet Collection"
-    >
-
-    <div class="card-info">
-      <h2>Velvet</h2>
-      <span>18 Photographs ?</span>
-    </div>
-
-  </a>
-
-<!-- CARD 2 -->
-  <a href="gallery.html?collection=velvet" class="card">
-
-    <img
-      src=""
-      alt="Velvet Collection"
-    >
-
-    <div class="card-info">
-      <h2>Velvet</h2>
-      <span>18 Photographs ?</span>
-    </div>
-
-  </a>
-
-<!-- CARD 2 -->
-  <a href="gallery.html?collection=velvet" class="card">
-
-    <img
-      src=""
-      alt="Velvet Collection"
-    >
-
-    <div class="card-info">
-      <h2>Velvet</h2>
-      <span>18 Photographs ?</span>
-    </div>
-
-  </a>
-
-<!-- CARD 2 -->
-  <a href="gallery.html?collection=velvet" class="card">
-
-    <img
-      src=""
-      alt="Velvet Collection"
-    >
-
-    <div class="card-info">
-      <h2>Velvet</h2>
-      <span>18 Photographs ?</span>
-    </div>
-
-  </a>
-
-<!-- CARD 2 -->
-  <a href="gallery.html?collection=velvet" class="card">
-
-    <img
-      src=""
-      alt="Velvet Collection"
-    >
-
-    <div class="card-info">
-      <h2>Velvet</h2>
-      <span>18 Photographs ?</span>
-    </div>
-
-  </a>
-
-<!-- CARD 2 -->
-  <a href="gallery.html?collection=velvet" class="card">
-
-    <img
-      src=""
-      alt="Velvet Collection"
-    >
-
-    <div class="card-info">
-      <h2>Velvet</h2>
-      <span>18 Photographs ?</span>
-    </div>
-
-  </a>
-
-
-
-  <!-- CARD 3 -->
-  <a href="gallery.html?collection=afterhours" class="card">
-
-    <img
-      src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=900&q=90"
-      alt="After Hours Collection"
-    >
-
-    <div class="card-info">
-      <h2>After Hours</h2>
-      <span>15 Photographs ?</span>
-    </div>
-
-  </a>
-
-
-  <!-- CARD 4 -->
-  <a href="gallery.html?collection=shadow" class="card">
-
-    <img
-      src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=90"
-      alt="Shadow Collection"
-    >
-
-    <div class="card-info">
-      <h2>Shadow</h2>
-      <span>10 Photographs ?</span>
-    </div>
-
-  </a>
-
-
-  <!-- CARD 5 -->
-  <a href="gallery.html?collection=gold" class="card">
-
-    <img
-      src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=900&q=90"
-      alt="Golden Collection"
-    >
-
-    <div class="card-info">
-      <h2>Golden Hour</h2>
-      <span>14 Photographs ?</span>
-    </div>
-
-  </a>
-
-
-  <!-- CARD 6 -->
-  <a href="gallery.html?collection=studio" class="card">
-
-    <img
-      src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=900&q=90"
-      alt="Studio Collection"
-    >
-
-    <div class="card-info">
-      <h2>Studio</h2>
-      <span>20 Photographs ?</span>
-    </div>
-
-  </a>
-
-</section>
-<script src="https://pl31735336.profitableratecpmnetwork.com/a8/dd/64/a8dd64de7e6ae62285b0504ed5ea9060.js"></script>
+        function updateLightboxImage() {
+            document.getElementById('lightbox-img').src = samplePhotos[currentPhotoIndex];
+            document.getElementById('lightbox-caption').innerText = `Photo ${currentPhotoIndex + 1} of ${samplePhotos.length}`;
+        }
+    </script>
 </body>
 </html>
